@@ -56,6 +56,6 @@
       (first list-cchars)
       (if-let [char-n  (first list-cchars)]   
         (recur
-          (rest list-current-chars) 
+          (rest  list-cchars) 
           (conj hset-chars char-n ))
          nil))))
