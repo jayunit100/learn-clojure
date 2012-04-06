@@ -17,14 +17,3 @@
 					(conj set-Seen (first list-Rem))))))
 
 
-;;Alternative of above function. This time, uses when-let.
-(defn first-duplicate-char [in]
-  (loop [seen #{} remain (seq in)] ; simplify input vars.
-  ;;The let family of macros can destructure a list for you. 
-  (when-let ;; takes 2 arguments, a binding, and an expression . 
-  	  [[head & tail] remain] 
-      (if (contains? seen head) 
-        head
-        ;;if not seen yet, we add the "head" character to the set of "seen" chars.
-        ;;and then proceed to recur on the tail.
-        (recur (conj seen head) tail)))))
