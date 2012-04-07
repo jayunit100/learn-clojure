@@ -34,3 +34,17 @@
       (if (<= compare (first hist))
           (inc (num-ge compare (rest hist))) 
            0)))
+
+
+;Higher performance num-ge ... this time, 
+;we use tail recursion so the stack is stable.
+(log num-geP [compare hist]
+    (loop [c compare h hist curr 0]
+     ; (print c " " h " " curr "\n")
+      (if (= h '())
+       curr
+       (if (not (<= compare (first h)))
+           curr
+           (recur compare (rest h) (inc curr) )))))
+
+
