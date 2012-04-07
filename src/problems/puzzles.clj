@@ -1,24 +1,9 @@
 (ns problems.puzzles
   (:require [clojure.string :as cs]))
 
-;;To use, simply call (load-file "src/problems/core.clj") from the repl.
- 
-;;Given a historgram of heights, find a rectangle with max volume that 
-;;remains bounded under the histogram.
-(def *histogram* '(6 7 0 0))
-
-(comment
-       This historgram demonstrates
-       that we dont need the whole width
-       in order to have max area
-       xxxxxxxxxx
-      x          x
-     x           x  
-    x            x      
-   x               xxx  
-  x                   x                 
-       n         e 
-)
+;;Calculate the max area under a histogram if we 
+;;have to draw a rectangle which is bounded by all the 
+;;points.
 
 ; A function wrapper that logs the call.  
 (defmacro log [fn-name args & body]
