@@ -5,4 +5,32 @@
  
 ;;Given a historgram of heights, find a rectangle with max volume that 
 ;;remains bounded under the histogram.
-(def histogram {1 1 2 2})
+(def *histogram* '(6 7 0 0))
+
+(comment
+       This historgram demonstrates
+       that we dont need the whole width
+       in order to have max area
+       xxxxxxxxxx
+      x          x
+     x           x  
+    x            x      
+   x               xxx  
+  x                   x                 
+       n         e 
+)
+
+; A function wrapper that logs the call.  
+(defmacro log [fn-name args & body]
+        `(defn ~fn-name ~args
+           (println "call func -> ..." ~fn-name ~args )
+           ~@body))
+
+;Returns the number of consecutive elements which 
+;are >= the compare input.
+(log num-ge [compare hist]
+    (if (= hist '())
+      0
+      (if (<= compare (first hist))
+          (inc (num-ge compare (rest hist))) 
+           0)))
