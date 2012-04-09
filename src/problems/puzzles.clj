@@ -1,7 +1,5 @@
 (ns problems.puzzles
-  (:require [clojure.string :as cs]) 
-   )
-  
+  (:require [clojure.string :as cs])) 
 
 ;;Calculate the max area under a histogram if we 
 ;;have to draw a rectangle which is bounded by all the 
@@ -10,8 +8,10 @@
 ; A function wrapper that logs the call, and also 
 ; runs the pre assertions 
 (defmacro log [fn-name args pre & body]
+        ;`template
         `(defn ~fn-name ~args ~pre
-           (println "call func -> ..." ~fn-name ~args)
+          ; (println "call func -> ..." ~fn-name ~args)
+           ;;~interpret+@splice
            ~@body))
 
 ;The seqable method seems to have moved from core. heres a workaround.    
@@ -41,14 +41,49 @@
            curr
            (recur compare (rest h) (inc curr) )))))
 
-;input [2,3,*3*,10,4,12,5,18,6,1], 2
-;returns [3 10, 4 10, 5 10]
+
+(defn vec-drop [coll i]
+ {:pre [(seqable? coll)] }
+     (vec (drop i coll)))
+
+;input   [10 11 31 4] 0
+;returns the map of points -> hist values.
 (defn rect-points [histogram i]
   (let [
-        hist (seq histogram)
-        steps  (num-geP hist (nth hist i))
+        hist (vec-drop histogram i)
+       ; _ (println "\t\nhist vector: " hist " " (hist 0) "\n")
+        steps  (num-geP hist (hist 0))
+       ; _ (println "\tsteps " steps  " <= ? " (nth hist 0) )
         Xs (range i (+ i steps)) 
-        Ys (map #(nth hist %) Xs)
+       ; _ (println "\trange " Xs)
+        Ys hist ;(map #(nth hist %) Xs)
+       ; _ (println "\tdomain " Ys)
         r  (zipmap Xs Ys)
+       ; _ (println "done\n")
         ]r)
         )
+
+;Returns the areas of all rectangles, drawn left-to-right, 
+;such that the rectangle boundary never exceeds the 
+;height of the input histogram. 
+(defn pick-rect-points [histogram]
+  (let [
+        all-starts (range 0 (count histogram))
+        _ (println "starts = " all-starts)
+        vals (map #(vals (rect-points histogram %)) all-starts)
+        _ (println "value lists" vals)
+        rects (map 
+               #(reduce + %) 
+                vals)
+        _ (println "areas = " rects)
+        areas (zipmap all-starts rects) 
+        ]
+        areas))
+
+(defn calc-max-area [histogram]
+  (let [areas (pick-rect-points histogram)
+        _ (println "Areas -> " areas)
+        max-area (reduce max (vals areas))]
+        _ (println "All done.  Thank you and goodnight :)")
+        max-area)
+  )
