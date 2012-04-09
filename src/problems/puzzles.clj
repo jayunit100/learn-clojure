@@ -80,6 +80,12 @@
         ]
         areas))
 
+;;Run this program by calling this method, for example, 
+;;With the following line at the repl : 
+;;input histogram = [10 20 30 40 30 20 10] 
+;;(calc-max-area [10 20 30 40 30 20 10])
+;;You will get the area of the maximum rectangle residing under 
+;;the histogram defined by the heights in the input vector.
 (defn calc-max-area [histogram]
   (let [areas (pick-rect-points histogram)
         _ (println "Areas -> " areas)
