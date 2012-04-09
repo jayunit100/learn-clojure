@@ -35,3 +35,5 @@
       )
     )
   )
+
+(deftest test-program (is (= 160  (calc-max-area [10 20 30 40 30 20 10]))))
