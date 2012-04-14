@@ -3,8 +3,6 @@
 
 ;;To use, simply call (load-file "src/problems/core.clj") from the repl.
  
-
-
 ;;Look through a collection, see if an object is in it.
 ;;To exemplify the 'or' function, we have a 2nd equivalence conditions ; Either 
 ;;the toString is the same, or the objects are = using 
@@ -59,3 +57,18 @@
           (rest  list-cchars) 
           (conj hset-chars char-n ))
          nil))))
+
+;;A simplified version of the above method, uses cond 
+;;Much more clear. 
+(defn first-dup-char2 [str]  
+  (loop [lst [] str1 (seq str)]
+    (cond 
+      (= 0 (count str1)) nil       
+      (in? (first str1) lst) (first str1)  
+      true (recur (conj str1 (first str1)) (rest str1))
+    )))
+
+
+
+
+

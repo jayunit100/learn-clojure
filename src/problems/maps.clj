@@ -16,3 +16,5 @@
            ;;that its not a nested list. 
            ~@body))
  
+(log repeats [len str]
+     ())

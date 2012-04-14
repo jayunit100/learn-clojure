@@ -10,6 +10,10 @@
   ;(print (first-duplicate-char "abcaD"))
   (is (= \a (first-duplicate-char "abcaD"))))
 
+(deftest test-first-duplicate-char2
+  ;(print (first-duplicate-char "abcaD"))
+  (is (= \b (first-dup-char2 "abbcD"))))
+  
 ;;Benchmark runs the function "funcge".
 (defn benchmark-ge [funcge]
   (funcge [2 3 4 11 1] 2))
