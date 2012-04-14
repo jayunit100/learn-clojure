@@ -2,7 +2,7 @@
   (:use [problems.core])
   (:use [clojure.test])
   (:use [problems.strings])
-  (:use [problems.puzzles]))
+  (:use [problems.histograms]))
 
 
   ;;Confirm that the first duplicate is a

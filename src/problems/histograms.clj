@@ -1,4 +1,4 @@
-(ns problems.puzzles
+(ns problems.histograms
   (:require [clojure.string :as cs])) 
 
 ;;Calculate the max area under a histogram if we 
