@@ -1,5 +1,6 @@
 (ns problems.core
-  (:require [clojure.test :as ct]) )
+  (:require [clojure.test :as ct])
+  (:use [problems.histograms]))
 
 (load "permutations")
 

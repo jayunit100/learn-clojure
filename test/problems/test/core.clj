@@ -41,3 +41,10 @@
   )
 
 (deftest test-program (is (= 160  (calc-max-area [10 20 30 40 30 20 10]))))
+
+; Very cool function that repeatedly does an operation to a list.
+; Might work for generating rotations of a string charset
+(deftest test-apply (is (= 
+                          [4 5 6] 
+                          (applyN [1 2 3] #(+ % 3) 1))))
+

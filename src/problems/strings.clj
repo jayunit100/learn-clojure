@@ -1,5 +1,7 @@
 (ns problems.strings
-  (:require [clojure.string :as cs]))
+  (:require [clojure.string :as cs])
+  (:use [problems.histograms])
+  (:use [clojure.test]))
 
 ;;To use, simply call (load-file "src/problems/core.clj") from the repl.
  
@@ -68,7 +70,20 @@
       true (recur (conj str1 (first str1)) (rest str1))
     )))
 
+;;Compression burrow-wheelers
+;;Note that conj adds to the end of a vector /
+;;Beggining of a string. 
+(defn rotate [in]
+     (conj (vec (rest in)) (first in)))
 
-
+;;Apply a function to the same list multiple times. 
+(defn applyN [seq_in func_op int_N]
+  {:pre [(seqable? seq_in) (function? func_op) (number? int_N)]}
+  (loop [s seq_in f func_op n int_N]
+    ;(print s " " f " " n " \n")
+    (if
+      (= n 0) s
+      (do
+        (recur (map f s) f (dec n))))))
 
 
