@@ -18,4 +18,18 @@
    (loop [[x y] [0 1] curr 0]
      (cond 
        (= curr end) y
-       :else (recur [y (+ x y)] (inc curr)))))
+       :else (recur [y (+ x y)] (inc curr))))) 
+
+(comment Prime factors for numbers w at most 3 factors, brute force, very brute force)
+(defn e3 [n]
+  (for [x (range 1 100) y (range 1 100) z (range 1 1000000) 
+        :when (= n (* x y z))]
+        [x y z]))
+
+(comment Prime factors again 
+         less idiotic this time .. )
+(defn e3A [n]
+  (let [facs (filter #(= 0 (mod n %)) (range 2 n) )
+         ]
+    facs)
+  )
