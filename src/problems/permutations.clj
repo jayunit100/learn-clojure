@@ -1,15 +1,22 @@
 (ns problems.core
   (:require [clojure.string :as cs]))
 
+
 (defn- break-str-at [^String s, ^long n]
+  "Input : [abcd 2]
+   Output : [abc d]"
   [(.substring s 0 n)
    (.substring s n)])
 
 (defn- all-str-pieces [^String s]
+  "Input : abcde
+   Output : [a bcde] [ab cde] [abc de] [abcd e] "
   (map #(break-str-at s %)
        (range (inc (.length s)))))
 
 (defn- inject-at-all-pos [^String s, ^String c]
+  "abcde X
+   aXbcde abXcde abcXde abcdXe abcdeX"
   (let [pieces (all-str-pieces s)]
     (map #(str (% 0) c (% 1))
          pieces)))
