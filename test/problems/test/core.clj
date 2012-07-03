@@ -5,6 +5,17 @@
   (:use [problems.histograms]))
 
 
+(deftest test-performance-wc
+  ;(print (first-duplicate-char "abcaD"))
+  
+  (let [txt (slurp "http://www.google.com")]
+    (print "time for set based word count\n")
+    (time (word-enrichment1 txt))
+    (print "time for reducer word count (should be less)\n")
+    (time (word-enrichment2 txt)))
+  )
+
+
   ;;Confirm that the first duplicate is a
 (deftest test-first-duplicate-char
   ;(print (first-duplicate-char "abcaD"))

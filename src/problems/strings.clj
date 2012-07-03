@@ -2,9 +2,33 @@
   (:require [clojure.string :as cs])
   (:use [problems.histograms])
   (:use [clojure.test]))
-
 ;;To use, simply call (load-file "src/problems/core.clj") from the repl.
- 
+
+(defn word-enrichment1
+  "input:  a string 'a b b'
+   output: a map : {'a' 1 'b' 2}"
+  [str_in]
+  {:pre [(= (type str_in) (type ""))]}
+  (let [all (clojure.string/split str_in #"\b+")]
+    (reduce
+      #(let [v (%1 %2)]
+         (assoc %1 %2
+            (if v (inc v) 1) )) {} all))) 
+
+(defn word-enrichment2
+  "input:  a string 'a b b'
+   output: a map : {'a' 1 'b' 2}"
+  [str_in]
+  {:pre [(= (type str_in) (type ""))]}
+  (let [all (clojure.string/split str_in #"\b+")]
+    (reduce
+      #(let [v (%1 %2)]
+         (assoc %1 %2
+            (if v (inc v) 1) )) {} all)))
+
+
+
+
 ;;Look through a collection, see if an object is in it.
 ;;To exemplify the 'or' function, we have a 2nd equivalence conditions ; Either 
 ;;the toString is the same, or the objects are = using 

@@ -15,13 +15,15 @@
        (range (inc (.length s)))))
 
 (defn- inject-at-all-pos [^String s, ^String c]
-  "abcde X
-   aXbcde abXcde abcXde abcdXe abcdeX"
+  "Input : abcde X
+   Output : aXbcde abXcde abcXde abcdXe abcdeX"
   (let [pieces (all-str-pieces s)]
     (map #(str (% 0) c (% 1))
          pieces)))
 
 (defn permutations-by-inject-recursive [^String s]
+  "Input : abc 
+   Output : abc bca cab"
   (let [len (.length s)]
     (if (= 2 len)
       [s, (cs/reverse s)]
