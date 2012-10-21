@@ -18,7 +18,7 @@
     (cond 
       (= neighbors 1) 1 
       (= neighbors 2) 1 
-      (> neighbors 3) 0)))
+      (> neighbors 3) 0)) )
 
 ;The gameboard is a function with -1's for boundaries.
 (defn boardstart [x y]
