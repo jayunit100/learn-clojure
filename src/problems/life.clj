@@ -1,12 +1,6 @@
 (ns problems.life
   (:require [clojure.string]));;should use "only" here! (use '[clojure.data.json :only (read-json json-str)])
 
-; GOL is a function, which takes 
-; a function as input - the function takes an index(x,y) and returns a value
-; for example, 1 or 0.
-(defn play1 [f] 
-  (print (f '(0 0))))
-
 ;This function determines wether a cell is alive or dead.
 ;inputs: 
 ; f: the initial board function (f), 
