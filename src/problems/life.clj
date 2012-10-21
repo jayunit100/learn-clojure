@@ -2,7 +2,7 @@
   (:require [clojure.string]));;should use "only" here! (use '[clojure.data.json :only (read-json json-str)])
 
 ;This function determines wether a cell is alive or dead.
-;inputs: 
+;Its a simplified version of the classic life function.
 ; f: the initial board function (f), 
 ; x, y (the x/y coordinates)
 (defn live [f x y] 
