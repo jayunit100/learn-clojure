@@ -6,17 +6,19 @@
 ; f: the initial board function (f), 
 ; x, y (the x/y coordinates)
 (defn live [f x y] 
-  (if (> 1
-                  (+ (f x (dec y))
+  (let [neighbors
+                  ((+ (f x (dec y))
                   (f x (inc y)) 
                   (f (inc x) y)
                   (f (dec x) y)
                   (f (dec x) (dec y))
                   (f (inc x) (inc y))
                   (f (dec x) (inc y))
-                  (f (inc x) (dec y)))) 1 
-    ;else , die.
-    0))
+                  (f (inc x) (dec y))))] 
+    (cond 
+      (= neighbors 1) 1 
+      (= neighbors 2) 1 
+      (> neighbors 3) 0)))
 
 ;The gameboard is a function with -1's for boundaries.
 (defn boardstart [x y]
