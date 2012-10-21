@@ -40,5 +40,5 @@
 (defn main1 []
   (print "\n------------\n")
   (printstate 
-    (newboard boardstart) 3)
+    (newboard (newboard boardstart)) 3)
   (print "\n------------\n"))
