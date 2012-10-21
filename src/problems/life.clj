@@ -37,6 +37,10 @@
   (doseq [x (range size) y (range size)] 
       (println x " " y " | " (board x y))))
 
+;To play, we simply call newboard over and over again. 
+;The effect is simply to calculate the gameboard functionally, so 
+;the board is recalculated at every call. Next step will be to add a bitcache or something
+;of the sort that is decoupled from the calling of the board.  
 (defn main1 []
   (print "\n------------\n")
   (printstate 
