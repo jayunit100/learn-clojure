@@ -7,18 +7,21 @@
 ; x, y (the x/y coordinates)
 (defn live [f x y] 
   (let [neighbors
-                  ((+ (f x (dec y))
-                  (f x (inc y)) 
-                  (f (inc x) y)
-                  (f (dec x) y)
-                  (f (dec x) (dec y))
-                  (f (inc x) (inc y))
-                  (f (dec x) (inc y))
-                  (f (inc x) (dec y))))] 
-    (cond 
-      (= neighbors 1) 1 
-      (= neighbors 2) 1 
-      (> neighbors 3) 0)) )
+                  (+ 
+	                  (max 0 (f x (dec y)))
+	                  (max 0 (f x (inc y))) 
+	                  (max 0 (f (inc x) y))
+	                  (max 0 (f (dec x) y))
+	                  (max 0 (f (dec x) (dec y)))
+	                  (max 0 (f (inc x) (inc y)))
+	                  (max 0 (f (dec x) (inc y)))
+	                  (max 0 (f (inc x) (dec y))))]
+    (cond
+      (= neighbors 0) 0
+      (= neighbors 1) 1
+      (= neighbors 2) 1
+      (= neighbors 3) 0
+      :else 0)))
 
 ;The gameboard is a function with -1's for boundaries.
 (defn boardstart [x y]
@@ -45,6 +48,8 @@
 ;of the sort that is decoupled from the calling of the board.  
 (defn main1 []
   (print "\n------------\n")
-  (printstate 
-    (newboard (newboard boardstart)) 3)
+  (printstate boardstart 3)
+  (print "\n------------\n")
+  (printstate (newboard boardstart) 3)
   (print "\n------------\n"))
+  (printstate (newboard (newboard boardstart)) 3)
